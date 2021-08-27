@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="8366b9c8-15ad-411a-ae00-7767c528263b" name="nani-server" url="https://dev.nani-games.net/playground/license4net">
+        <fileTransfer rootFolder="/var/www/dev/playground/license4net" accessType="SFTP" host="88.218.227.153" port="22" sshConfigId="af68451c-3335-460e-bda6-027bcb3013bb" sshConfig="root@88.218.227.153:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

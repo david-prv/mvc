@@ -1,0 +1,379 @@
+@use "sass:map"
+
+@import "fonts"
+@import "mixins"
+
+// Default variables
+$primary_color: ("main": rgb(245, 57, 57), "second-main": black)
+$text_color: ("main": white, "p": rgb(212, 212, 212))
+
+$border_style_default: 5px solid map.get($primary_color, "main")
+
+$border_radius_xlight: 10px
+$border_radius_light: 15px
+$border-radius_medium: 30px
+
+// SVG default settings
+g
+  &#nani-logo-full-duotone path
+    &.nani-logo-back
+      fill: rgb(166, 166, 166)
+      stroke: none
+
+    &.nani-logo-front
+      fill: white
+      stroke: none
+
+  &#nani-logo-outline-w-kanji path#nani-kanji
+      fill: map.get($primary_color, "main")
+      stroke: none
+
+  &.social-media-logo path
+    fill: map.get($primary_color, "second-main")
+    stroke: none
+
+path
+  &#nani-logo-outline
+    fill: none
+    stroke: map.get($primary_color, "main")
+    stroke-width: 6
+
+  &#contact-globe, &#contact-paperplane
+    fill: none
+    stroke: map.get($primary_color, "main")
+    stroke-width: 2
+
+  &#arrow-form-slider
+    fill: map.get($primary_color, "second-main")
+    stroke: none
+
+  &.header-icon
+    fill: map.get($primary_color, "main")
+    stroke: none
+
+use, path
+  &.ffdeg
+    @include transform(rotate(-45deg), center)
+  &.tedeg
+    @include transform(rotate(-28deg), center)
+
+// Default settings
+*
+  position: relative
+  box-sizing: border-box
+
+  margin: 0
+  padding: 0
+
+  @include selection($first_color: map.get($primary_color, "second-main"), $second_color: map.get($primary-color, "main"))
+
+body, html
+  width: 100%
+  height: auto
+
+  background-color: map.get($primary_color, "second-main")
+  text-rendering: optimizeSpeed
+
+$fixed_elements_offset: 27px
+a#nani-logo-fixed
+  position: fixed
+  top: $fixed_elements_offset
+  left: $fixed_elements_offset
+
+  @include flex-box(false, flex-start, center, column)
+  width: 55px
+  height: auto
+
+  z-index: 999
+  @include no-select
+
+  svg
+    width: 100%
+    height: auto
+
+    @include transform(rotate(-45deg), center)
+
+  p
+    margin-top: 21px
+
+    font-family: "RobotoBold", sans-serif
+    font-size: 14px
+    letter-spacing: 7px
+
+    writing-mode: vertical-rl
+    -webkit-writing-mode: vertical-rl
+    text-orientation: upright
+    -webkit-text-orientation: upright
+
+header
+  position: fixed
+  top: $fixed_elements_offset
+  right: $fixed_elements_offset
+
+  width: auto
+  height: auto
+
+  z-index: 999
+  @include no-select
+
+header#main-header nav.main-header-nav
+  width: auto
+  height: auto
+  @include overflow-hidden
+
+  ul
+    @include flex-box(false, flex-start, center, column)
+    width: auto
+    height: auto
+
+    li
+      display: block
+      $li_normal_size: 40px
+      width: $li_normal_size
+      height: $li_normal_size
+
+      margin-bottom: 10px
+
+      &:last-child
+        margin-bottom: 0
+
+      a
+        display: block
+        width: 100%
+        height: 100%
+
+        font-family: 'RobotoLight', sans-serif
+        font-size: 22px
+        text-align: center
+        color: map.get($primary-color, "main")
+
+        background-color: map.get($primary-color, "second-main")
+        @include border($radius: 50%)
+        @include overflow-hidden
+
+        picture.account-avatar img
+          width: 100%
+          height: 100%
+
+        &.account-link
+          background-color: transparent
+
+          svg.logged-out-account
+            $svg_size: 60px
+            width: $svg_size
+            height: $svg_size
+
+        &.logout-button
+          padding: 5px
+
+      &.account-avatar-container
+        $li_normal_size: 60px
+        width: $li_normal_size
+        height: $li_normal_size
+
+footer
+  display: block
+  width: 100%
+  height: 110px
+
+  background-color: map.get($primary_color, "main")
+  @include no-select
+
+footer#main-footer
+  @include flex-box($h: center, $v: center)
+
+  div.footer-content-wrapper
+    @include flex-box($h: space-between, $v: center)
+    width: auto
+    height: auto
+
+    padding: 10px
+
+    @include border($radius: $border_radius_light)
+    background-color: map.get($primary_color, "second-main")
+
+    p, a
+      width: 200px
+
+      font-family: "RobotoBold", sans-serif
+      font-size: 18px
+      color: map.get($primary_color, "main")
+      text-align: center
+
+    p
+      margin-right: 35px
+
+    a
+      @include flex-box($h: center, $v: center)
+      height: 40px
+
+      @include border($radius: $border_radius_xlight)
+      @include transition-time(150ms)
+
+      &:hover
+        cursor: pointer
+        background-color: map.get($primary_color, "main")
+        color: map.get($primary_color, "second-main")
+
+h1, h2, h3, h4, h5, p, a
+  font-weight: normal
+  text-decoration: none
+  color: white
+
+span.highlight
+  color: rgb(57, 167, 245)
+
+li
+  list-style: none
+
+button, .fake-button
+  text-align: center
+  @include border
+
+  &:hover
+    cursor: pointer
+
+  @include no-select
+
+.fake-button p
+  height: 100%
+
+section
+  display: block
+  width: 100%
+  height: 100vh
+
+  @include overflow-hidden
+
+form
+  width: auto
+  height: auto
+
+  $form_elements_width: 300px
+  $form_elements_height: 60px
+  $form_elements_offset: 15px
+
+  h2, input, textarea, button, .fake-button
+    display: block
+    width: $form_elements_width
+    height: $form_elements_height
+
+    font-family: "RobotoBold", sans-serif
+    font-size: 21px
+
+    color: map.get($text_color, "main")
+
+    @include border($radius: $border_radius_light)
+    outline: none
+
+    &:last-child
+      margin-bottom: 0
+
+  h2, input
+    text-align: left
+
+  h2
+    height: auto
+    margin-bottom: 22px
+
+    font-size: 27px
+
+  input, textarea
+    padding: 0 15px
+    margin-bottom: $form_elements_offset
+
+    @include border(3px solid map.get($primary_color, "main"), $border_radius_light)
+    background-color: map.get($primary_color, "second-main")
+
+    &:last-child
+      margin-bottom: 0
+
+    &::placeholder
+      color: map.get($primary_color, "main")
+      opacity: .55
+
+  textarea
+    padding: 15px
+    height: 200px
+
+    resize: none
+    -moz-resize: none
+
+  button, .fake-button
+    margin-bottom: $form_elements_offset
+
+    color: map.get($primary_color, "second-main")
+    background-color: map.get($primary_color, "main")
+
+  .fake-button p
+    line-height: $form_elements_height
+    color: map.get($primary_color, "second-main")
+
+  a
+    display: block
+    width: auto
+
+    margin-bottom: 7px
+
+    font-family: "RobotoLight", sans-serif
+    font-size: 13px
+    text-align: center
+
+    color: map.get($text_color, "p")
+
+    @include transition-time(150ms)
+
+    &:last-child
+      margin-bottom: 0
+
+    &:hover
+      cursor: pointer
+      color: map.get($primary_color, "main")
+
+  div.captcha-container
+    @include flex-box($h: center, $v: center)
+    width: $form_elements_width
+    height: $form_elements_height
+
+    margin-bottom: $form_elements_offset
+
+    a.captcha-refresh-button
+      width: auto
+      height: auto
+
+      margin-left: 11px
+
+      font-size: 18px
+
+div.image-container
+  width: 100%
+  height: 100%
+  @include overflow-hidden
+
+  picture img
+    width: 100%
+    height: 100%
+
+    object-fit: cover
+    -o-object-fit: cover
+
+  @include no-select
+
+div.invalid-feedback
+  @include flex-box($h: center, $v: center)
+  width: 100%
+  height: auto
+
+  margin-bottom: 11px
+
+  p
+    @include size-max-content
+    height: auto
+
+    padding: 3px 11px
+
+    font-family: "RobotoRegular", sans-serif
+    font-size: 16px
+    color: rgb(255, 23, 23)
+
+    @include border(2px solid rgb(255, 23, 23), 7px)

@@ -1,0 +1,115 @@
+// Selection
+@mixin selection($invert: false, $first_color, $second_color)
+  @if ($invert == false)
+    ::selection
+      color: $first_color
+      background-color: $second_color
+    ::-moz-selection
+      color: $first_color
+      background-color: $second_color
+  @else
+    ::selection
+      color: $second_color
+      background-color: $first_color
+    ::-moz-selection
+      color: $second_color
+      background-color: $first_color
+
+// Default mixins
+@mixin size-max-content($width: true, $height: false)
+  @if ($width == true)
+    width: intrinsic
+    width: -webkit-max-content
+    width: max-content
+
+  @if ($height == true)
+    height: intrinsic
+    height: -webkit-max-content
+    height: max-content
+
+@mixin clickable($bool: false)
+  @if ($bool == true)
+    pointer-events: all
+  @else
+    pointer-events: none
+
+@mixin box-shadow($style: none)
+  box-shadow: $style
+  -webkit-box-shadow: $style
+  -moz-box-shadow: $style
+
+@mixin border($style: none, $radius: 0px)
+  border: $style
+  -webkit-border: $style
+  -moz-border: $style
+  -o-border: $style
+
+  border-radius: $radius
+  -webkit-border-radius: $radius
+  -moz-border-radius: $radius
+
+@mixin transition-time($time)
+  transition: all $time
+  -webkit-transition: all $time
+  -moz-transition: all $time
+  -o-transition: all $time
+
+@mixin transform($style, $origin: initial)
+  transform-origin: $origin
+  -webkit-transform-origin: $origin
+  -ms-transform-origin: $origin
+  -moz-transform-origin: $origin
+  -o-transform-origin: $origin
+
+  transform: $style
+  -webkit-transform: $style
+  -ms-transform: $style
+  -moz-transform: $style
+  -o-transform: $style
+
+@mixin flex-box($inline: false, $h, $v, $dir: row)
+  @if ($inline == true)
+    display: inline-flex
+    display: -webkit-inline-flex
+    display: -ms-inline-flexbox
+    display: -moz-inline-box
+  @else
+    display: flex
+    display: -webkit-flex
+    display: -ms-flex
+    display: -moz-flex
+
+  justify-content: $h
+  -webkit-justify-content: $h
+  -ms-justify-content: $h
+  -moz-justify-content: $h
+
+  align-items: $v
+  -webkit-align-items: $v
+  -ms-align-items: $v
+  -moz-align-items: $v
+
+  flex-direction: $dir
+  -webkit-flex-direction: $dir
+  -ms-flex-direction: $dir
+  -moz-flex-direction: $dir
+
+@mixin no-select()
+  user-select: none
+  -webkit-user-select: none
+  -ms-user-select: none
+  -moz-user-select: none
+
+@mixin overflow-hidden()
+  overflow: hidden
+  overflow: -moz-hidden-unscrollable
+
+// Default shapes
+@mixin cool-circle($diameter, $color, $only_outline: false, $outline_width: 0px)
+  width: $diameter
+  height: $diameter
+
+  @if ($only_outline == false)
+    background-color: $color
+
+  @include border($outline_width solid $color, 50%)

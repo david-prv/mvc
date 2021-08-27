@@ -1,0 +1,243 @@
+@use "sass:map"
+
+@import "includes/style"
+
+section#welcome
+  @include flex-box($h: center, $v: center)
+
+  div.showcase-container
+    @include flex-box(false, center, center, column)
+    width: 1366px
+    height: auto
+
+    @include clickable()
+
+    ul#showcase
+      width: 100%
+      height: auto
+
+      li
+        width: 100%
+        height: 768px
+
+        @include border($radius: $border_radius_medium)
+        @include overflow-hidden
+
+    div.details
+      @include flex-box($h: center, $v: center)
+      $space_between: 20px
+
+      width: 100%
+      height: auto
+
+      margin-top: 30px
+
+      @include clickable(true)
+
+      h2, button
+        display: inline-block
+        display: -moz-inline-block
+
+        width: 250px
+
+        font-family: 'RobotoBold', sans-serif
+
+      h2
+        margin-right: $space_between
+
+        font-size: 32px
+        color: map.get($primary_color, "main")
+
+        text-align: right
+        text-align: -moz-right
+        text-align: -webkit-right
+
+      button
+        height: 50px
+        margin-left: $space_between
+        font-size: 21px
+
+        @include border($radius: $border_radius_light)
+        background-color: map.get($primary_color, "main")
+
+section#about-nani
+  @include flex-box($h: center, $v: center)
+  margin: 415px 0
+
+  div.about-nani-container
+    width: 1055px
+    height: auto
+
+    background-color: map.get($primary_color, "main")
+    @include border($border_style_default, $border_radius_medium)
+    @include overflow-hidden
+
+    div.intro, div.about
+      width: 100%
+      height: auto
+
+      padding: 75px
+
+    div.intro
+      background-color: map.get($primary_color, "second-main")
+
+      h1
+        font-family: "RobotoBlack", sans-serif
+        font-size: 64px
+
+      svg.nani-logo-outline-w-kanji-container
+        position: absolute
+        top: 50%
+        right: -75px
+        transform: translate(0%, -50%)
+
+        $svg_size: 675px
+        width: $svg_size
+        height: $svg_size
+
+    div.about
+      @include flex-box($h: space-between, $v: flex-start)
+      @include selection(true, map.get($primary_color, "second-main"), map.get($primary_color, "main"))
+
+      div.we-are-nani, div.visit-the-archive
+        width: 375px
+        height: auto
+
+        h2, p
+          color: map.get($primary_color, "second-main")
+
+        h2
+          margin-bottom: 10px
+
+          font-family: "RobotoBlack", sans-serif
+          font-size: 52px
+
+        p
+          font-family: "RobotoBold", sans-serif
+          font-size: 24px
+
+        button
+          width: 100%
+          height: 45px
+
+          margin-top: 15px
+
+          font-family: "RobotoRegular", sans-serif
+          font-size: 18px
+          color: map.get($primary_color, "main")
+
+          @include border($radius: $border_radius_light)
+          background-color: map.get($primary_color, "second-main")
+
+section#contact
+  height: auto
+  min-height: 100vh
+
+  div.contact-head-piece, div.contact-body-piece
+    width: 100%
+    height: auto
+
+  div.contact-head-piece
+    div.contact-header-title, div.social-links-container
+      @include flex-box($h: center, $v: center)
+      width: 100%
+      height: 260px
+
+    div.contact-header-title
+      height: 300px
+      @include overflow-hidden
+
+      h1
+        font-family: "RobotoBlack", sans-serif
+        font-size: 88px
+
+        text-shadow: 8px 8px map.get($primary_color, "second-main")
+        @include no-select
+
+      div.cool-circle
+        $circle_diameter: 200px
+
+        position: absolute
+        left: 50%
+        transform: translate(-50%, -50%)
+
+        @for $i from 1 through 3
+          &:nth-child(#{$i})
+            @include cool-circle($circle_diameter * $i, map.get($primary_color, "main"), true, 7px)
+            bottom: -$circle_diameter * $i
+            opacity: .333 * $i
+
+    div.social-links-container
+      background-color: map.get($primary_color, "main")
+
+      ul li
+        display: inline-block
+        display: -moz-inline-block
+
+        width: 145px
+        height: 145px
+
+        margin-right: 45px
+
+        &:last-child
+          margin-right: 0
+
+        a, svg
+          width: 100%
+          height: auto
+
+  div.contact-body-piece
+    @include flex-box($h: center, $v: center)
+    height: 120vh
+
+    svg.contact-svg
+      position: absolute
+      bottom: 0
+      right: 0
+
+      width: 100%
+      height: 100%
+
+      opacity: .5
+
+      use
+        &.contact-globe
+          @include transform(translateX(300px))
+
+        &.contact-paperplane
+          @include transform(translate(-400px, 200px))
+
+    div.contact-body-wrapper
+      @include flex-box($h: center, $v: flex-start)
+      width: auto
+      height: auto
+
+      div.contact-information, form#contact-form
+        width: 500px
+        height: auto
+
+      div.contact-information
+        margin-right: 65px
+
+        h2, p
+          font-family: "RobotoBold", sans-serif
+
+        h2
+          font-size: 56px
+          margin-bottom: 10px
+
+        p
+          font-size: 22px
+          color: map.get($text_color, "p")
+
+          span.highlight
+            top: 10px
+
+          &.hint
+            font-family: "RobotoRegular", sans-serif
+            font-size: 12px
+            margin-top: 35px
+
+      form#contact-form
+        input, textarea, button
+          width: 100%

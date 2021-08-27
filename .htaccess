@@ -1,0 +1,10 @@
+AuthType Basic
+AuthName "Permission denied"
+AuthUserFile /var/www/.htpasswd
+Require valid-user
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  RewriteRule ^$ public/ [L]
+  RewriteCond %{REQUEST_URI} !^/public/? [NC]
+  RewriteRule (.+) public/$1 [L]
+</IfModule>

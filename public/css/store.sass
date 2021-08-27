@@ -1,0 +1,41 @@
+@import "includes/style"
+
+section#download-page
+  @include flex-box($h: center, $v: center)
+
+  div.showcase-container
+    width: auto
+    height: auto
+
+    div.image-container
+      width: 950px
+      height: 550px
+
+      border-radius: 12px
+
+    div.details
+      @include flex-box($h: space-between, $v: center)
+
+      width: 100%
+      height: auto
+
+      margin-top: 15px
+
+      h2
+        font-family: "RobotoRegular", sans-serif
+        font-size: 22px
+
+      button
+        width: 200px
+        height: 45px
+
+        font-family: "RobotoRegular", sans-serif
+        font-size: 16px
+        color: rgb(71, 71, 71)
+
+        border: none
+        border-radius: 12px
+        outline: none
+
+        &:hover
+          cursor: pointer

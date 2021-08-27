@@ -1,0 +1,60 @@
+@use "sass:map"
+
+@import "includes/style"
+
+section.account-managing
+  background-color: map.get($primary_color, "second-main")
+  @include no-select
+
+  div.account-form-container
+    position: absolute
+    top: 50%
+    left: 50%
+    @include transform(translate(-50%, -50%))
+
+    $form_width: 425px
+
+    display: block
+    width: auto
+    min-width: $form_width
+    height: auto
+
+    $user_profile_picture_size: 165px
+
+    div.user-profile-picture
+      width: $user_profile_picture_size
+      height: $user_profile_picture_size
+
+      @include border($border_style_default, 50%)
+      background-color: map.get($primary_color, "main")
+      @include overflow-hidden
+
+    div.user-profile-background
+      width: 100%
+      height: 125px
+
+      @include border($radius: $border_radius_medium $border_radius_medium 0 0)
+      background-color: map.get($primary_color, "main")
+      z-index: 5
+
+      div.user-profile-picture
+        position: absolute
+        bottom: -($user_profile_picture_size / 2)
+        left: 50%
+        @include transform(translateX(-50%))
+
+    div#form-container
+      @include flex-box($h: center, $v: center)
+      width: 100%
+      height: auto
+
+      padding-top: $user_profile_picture_size / 2 + 35px
+      padding-bottom: 25px
+
+      @include border($border_style_default, 0 0 $border_radius_medium $border_radius_medium)
+      border-top: none
+
+      background-color: map.get($primary_color, "second-main")
+
+  &#account-register
+    height: 135vh
